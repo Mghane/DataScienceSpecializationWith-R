@@ -1,7 +1,7 @@
 # Code Book
 ## Identifiers
 * [1] Subject - The ID number of the test subject
-* [2] Activity - The type of activity performed 
+* [2] Activity - The type of activity performed (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
 ## Variables                                      
 * [3] "TimeBodyAccelerationMean()-X"                   
 * [4] "TimeBodyAccelerationMean()-Y"                    
