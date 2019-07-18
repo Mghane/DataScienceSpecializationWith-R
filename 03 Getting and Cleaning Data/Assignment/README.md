@@ -27,14 +27,13 @@ ftrain <- cbind(subject_train,activity_train,train)
 #merge test and train
 merged <- rbind(ftest,ftrain)
 merged <- merged[,!duplicated(colnames(merged))]
-# use descriptive activity names to name the activities in data set.
-#merged$Activity <- activity[merged$Activity,2] 
+* **use descriptive activity names to name the activities in data set** 
 for(i in 1:6) { merged$Activity <-  sub(i,activity$names[i], merged$Activity)}
-        # Does work, can be alternative    #merged$Activity[activity$number %in% merged$Activity] <- activity$names
+        # Does work, can be used as an alternative    #merged$Activity[activity$number %in% merged$Activity] <- activity$names
         #Does not work, why?    #merged$Activity <- lapply(1:6, function(x) gsub(x,activity$names[x], merged$Activity))
-##Extracts only the measurements on the mean and standard deviation for each measurement.
+* **Extracts only the measurements on the mean and standard deviation for each measurement**
 selected <- tbl_df(merged)%>% select(Subject:Activity,contains("mean"),contains("std"))
-#Appropriately labels the data set with descriptive variable names
+* **Appropriately labels the data set with descriptive variable names**
 names(selected) <-  gsub("^t","Time", names(selected))
 names(selected) <-  gsub("Acc","Acceleration", names(selected))
 names(selected) <-  gsub("BodyBody","Body", names(selected))
@@ -48,7 +47,7 @@ names(selected) <-  gsub("tBody","TimeBody", names(selected))
 names(selected) <-  gsub("Gyro","Gyroscope", names(selected))
 names(selected) <-  gsub("Mag","Magnitude", names(selected))
 names(selected) <-  gsub("uencyuency","uency", names(selected))
-##create a tidy data set with the average of each variable for each activity and each subject.
+* **create a tidy data set with the average of each variable for each activity and each subject**
 grouped <- group_by(selected, Subject,Activity, add=TRUE ) 
 tidyData <- summarize_all(grouped, list(mean))       
 write.csv (tidyData,file = "./tidyData.csv", row.names = FALSE)  
