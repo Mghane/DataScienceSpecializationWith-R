@@ -55,5 +55,5 @@ names(selected) <-  gsub("uencyuency","uency", names(selected))
 ##create a tidy data set with the average of each variable for each activity and each subject.
 grouped <- group_by(selected, Subject,Activity, add=TRUE ) 
 tidyData <- summarize_all(grouped, list(mean))       
-write.csv (tidyData,file = "./tidyData.csv", row.names = FALSE)        
+write.table (tidyData,file = "./tidyData.txt", row.names = FALSE)    
         
