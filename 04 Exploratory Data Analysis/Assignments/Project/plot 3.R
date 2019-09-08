@@ -1,0 +1,10 @@
+##Q3
+source("unzip.R")
+library(dplyr)
+library(ggplot2)
+Bsum <- summarize(group_by(BaltimoreData, type, year), Total=sum(Emissions))
+png("plot 3.png", width = 600)
+##with(Bsum,qplot(year,Total, facets = .~type))
+x1 <- ggplot(data = Bsum, aes(factor(year),Total)) + facet_grid(.~type) + geom_col(aes(fill=type)) + xlab("year") + ylab(expression('Total PM ' [2.5]))   
+plot(x1)
+dev.off()
